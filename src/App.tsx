@@ -11,6 +11,7 @@ function App() {
       {path:'/register', element:<Register/>},
     ]}
   ])
+  
   return (
     <>
       <RouterProvider router={Routes}>
