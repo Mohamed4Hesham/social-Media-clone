@@ -1,8 +1,8 @@
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const handleSignup = createAsyncThunk( 'user/handleSignup' , async (FormValues:UserType) => {
-        const Response = await fetch(`${process.env.BASE_URL}/users/signup` , {
+export const handleSignup = createAsyncThunk( 'user/handleSignup' , async (FormValues:UserType) => {
+        const Response = await fetch(`https://linked-posts.routemisr.com/users/signup` , {
             method:'POST',
             body:JSON.stringify(FormValues),
             headers:{'Content-Type':'application/json'},
@@ -24,6 +24,14 @@ const userSlice = createSlice({
     reducers:{},
     extraReducers: (builder)=>{
         builder.addCase(handleSignup.fulfilled,(state,action)=>{
+            console.log(state);
+            console.log(action);
+        })
+        builder.addCase(handleSignup.rejected,(state,action)=>{
+            console.log(state);
+            console.log(action);
+        })
+        builder.addCase(handleSignup.pending,(state,action)=>{
             console.log(state);
             console.log(action);
         })
