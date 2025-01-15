@@ -12,15 +12,7 @@ export const handleSignup = createAsyncThunk( 'user/handleSignup' , async (FormV
         return data;
 })
 
-export const handleLogin = createAsyncThunk( 'user/handleLogin' , async (FormValues:LoginForm) => {
-        const Response = await fetch(`https://linked-posts.routemisr.com/users/login` , {
-            method:'POST',
-            body:JSON.stringify(FormValues),
-            headers:{'Content-Type':'application/json'},
-        });
-        const data = await Response.json();
-        return data;
-})
+
 const userSlice = createSlice({
     name:'user',
     initialState:<UserType>{
@@ -47,6 +39,7 @@ const userSlice = createSlice({
             console.log(state);
             console.log(action);
         })
+        
     }
     }
 )
