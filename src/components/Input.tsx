@@ -1,21 +1,11 @@
-interface InputProps {
-    label: string;
-    type: string;
-    placeholder: string;
-    name: string
-}
-interface PassedProps {
-    data : InputProps,
-    touched : boolean |undefined ,
-    error : string|undefined,
-    value : string,
-    onChange : (e : React.ChangeEvent<HTMLInputElement>) => void,
-    onBlur : (e : React.FocusEvent<HTMLInputElement>) => void
-}
+import { PassedProps } from "@/interfaces/PassedPropsToForm";
+
 const Input = ({ data , touched , error , value, onChange, onBlur} :PassedProps ) => {
+    
+    const {name , placeholder, label , type} = data;
     return <>
-    <label htmlFor={data.name}>{data.label}</label>
-    <input value={value} onChange={onChange} onBlur={onBlur} type={data.type}  placeholder={data.placeholder} name={data.name}/>
+    <label htmlFor={name}>{label}</label>
+    <input value={value} onChange={onChange} onBlur={onBlur} type={type}  placeholder={placeholder} name={name}/>
     {touched && error && <p>{error}</p>}
     </>
 }

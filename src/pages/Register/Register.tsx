@@ -32,13 +32,14 @@ const Inputs =[
 ]
 const Register = () => {
     const dispatch = useDispatch();
-    
+    // Validation schema from yup
     const validationSchema = yup.object({
         name: yup.string().min(2,'The entered name is too short ').max(20,'The entered name is too long').required('The name is required'),
         email: yup.string().email('The entered email is not valid').required('The email is required'),
         password: yup.string().min(6,'The entered password is too short').max(20,'The entered password is too long').required('The password is required').matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,'The entered password is not valid'),
         rePassword: yup.string().oneOf([yup.ref('password')],'The entered password and rePassword are not matching').required('The rePassword is required'), 
     })
+    // Formik configuration object
     const formikValues = useFormik({
         initialValues: {
             name: '',
@@ -55,7 +56,7 @@ const Register = () => {
         validationSchema,
 })
     return <>
-    <form onSubmit={formikValues.handleSubmit} className="flex flex-col mb-2">
+    <form onSubmit={formikValues.handleSubmit} className="flex flex-col  mb-2  gap-2 ">
         {Inputs.map((input , index) => <Input
         key={index}
         data = {input}
