@@ -5,6 +5,7 @@ import Register from './pages/Register/Register'
 import { Provider } from 'react-redux'
 import { Store } from './redux/Store'
 import Login from './pages/Login/Login'
+import { Toaster } from 'react-hot-toast'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <Provider store={Store}>
+      <Toaster/>
       <RouterProvider router={Routes}>
 
       </RouterProvider>

@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom"
 import * as yup from 'yup'
 import React from 'react' ;
 import { Loader } from "lucide-react"
+import toast, { Toaster } from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 const Inputs =[
     {
         label:'Name',
@@ -38,6 +40,7 @@ const Register = () => {
     const navigate = useNavigate();
     // isLoading to show spinner in the Register button 
     const [isLoading,setIsLoading] = React.useState(false);
+    const [error,setError] = React.useState<string>('');
     // Validation schema from yup
     const validationSchema = yup.object({
         name: yup.string().min(2,'The entered name is too short ').max(20,'The entered name is too long').required('The name is required'),
@@ -59,17 +62,28 @@ const Register = () => {
             try {
                 setIsLoading(true); 
                 const response = await dispatch(handleSignup(values));
-                console.log(response);
-                navigate('/login');
+                if(response.payload.message === 'success'){
+                    toast.success('Successfully created!', {duration: 5000});
+                    navigate('/login');
+                    setIsLoading(false);
+                }
+                else if(response.payload.error){
+                    toast.error(response.payload.error, {duration: 5000});
+                    setIsLoading(false);
+                }
             } catch (error) {
-                console.error(error);
+                setError(error.payload.error);
             } finally {
                 setIsLoading(false); 
             }
         },
         validationSchema,
 })
-    return <>
+    return <>'
+        <Helmet>
+            <title>Register</title>
+            <meta name="description" content="Nested component" />
+        </Helmet>'
     <div className=" container mx-auto p-2 " >
         <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
     <form onSubmit={formikValues.handleSubmit} className="   w-full max-w-sm mx-auto bg-white p-8 rounded-xl shadow-2xl ">
@@ -121,8 +135,7 @@ const Register = () => {
         <div className="flex flex-col">
         <button className="w-full bg-indigo-500 text-white text-sm font-bold py-2 px-4 rounded-xl hover:bg-indigo-600 transition duration-300"
         type="submit">
-            { !isLoading ?  'Register' : <Loader className="animate-spin w-4 h-4 inline" /> }
-        
+            { !isLoading ?  'Register' : <Loader className="animate-spin w-4 h-4 inline" /> }        
         </button>
         <span>  Already have an account ? 
         <Link className="underline font-bold  " to={'/login'} > Login now</Link>
