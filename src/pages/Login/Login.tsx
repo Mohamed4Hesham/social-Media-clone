@@ -107,7 +107,7 @@ const Login = () => {
             type="submit"
         >
             {!isLoading ? (
-            "login"
+            "Login"
             ) : (
             <Loader className="animate-spin w-4 h-4 inline" />
             )}
