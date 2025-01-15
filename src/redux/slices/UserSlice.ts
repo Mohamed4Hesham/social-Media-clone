@@ -1,3 +1,4 @@
+import { LoginForm } from "@/interfaces/LoginForm";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -11,6 +12,16 @@ export const handleSignup = createAsyncThunk( 'user/handleSignup' , async (FormV
         return data;
 })
 
+export const handleSignin = createAsyncThunk( 'user/handleSignin' , async (loginValues:LoginForm) => {
+    const Response = await fetch(`https://linked-posts.routemisr.com/users/signin` , {
+        method:'POST',
+        body:JSON.stringify(loginValues),
+        headers:{'Content-Type':'application/json'},
+    });
+    const data = await Response.json();
+    return data;
+})
+
 
 const userSlice = createSlice({
     name:'user',
@@ -21,7 +32,6 @@ const userSlice = createSlice({
         rePassword:'',
         dateOfBirth:'',
         gender:''
-
     },
     reducers:{},
     extraReducers: (builder)=>{
@@ -37,6 +47,18 @@ const userSlice = createSlice({
         builder.addCase(handleSignup.pending,(state,action)=>{
             console.log(state);
             console.log(action);
+        })
+        builder.addCase(handleSignin.fulfilled,(state,action)=>{
+            console.log(state);
+            console.log(action);    
+        })
+        builder.addCase(handleSignin.pending,(state,action)=>{
+            console.log(state);
+            console.log(action);    
+        })
+        builder.addCase(handleSignin.rejected,(state,action)=>{
+            console.log(state);
+            console.log(action);    
         })
         
     }
