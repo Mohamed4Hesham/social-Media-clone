@@ -1,4 +1,3 @@
-import { LoginForm } from "@/interfaces/LoginForm";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
