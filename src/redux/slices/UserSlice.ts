@@ -26,6 +26,7 @@ const userSlice = createSlice({
         builder.addCase(handleSignup.fulfilled,(state,action)=>{
             console.log(state);
             console.log(action);
+            
         })
         builder.addCase(handleSignup.rejected,(state,action)=>{
             console.log(state);
