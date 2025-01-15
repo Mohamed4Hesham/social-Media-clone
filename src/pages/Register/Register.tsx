@@ -2,7 +2,7 @@ import Input from "@/components/Input"
 import { handleSignup } from "@/redux/slices/UserSlice"
 import {useFormik} from 'formik'
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import * as yup from 'yup'
 import React from 'react' ;
 import { Loader } from "lucide-react"
@@ -35,6 +35,7 @@ const Inputs =[
 ]
 const Register = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     // isLoading to show spinner in the Register button 
     const [isLoading,setIsLoading] = React.useState(false);
     // Validation schema from yup
@@ -54,12 +55,17 @@ const Register = () => {
             gender:'',
             dateOfBirth:'',
         },
-        onSubmit: (values)=>{
-            {/* isLoading to show spinner but it's not working 😒😒😒😒😒 */}
-            setIsLoading(true);
-            dispatch(handleSignup(values));
-            setIsLoading(false);
-            
+        onSubmit: async (values) => {
+            try {
+                setIsLoading(true); 
+                const response = await dispatch(handleSignup(values));
+                console.log(response);
+                navigate('/login');
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false); 
+            }
         },
         validationSchema,
 })
