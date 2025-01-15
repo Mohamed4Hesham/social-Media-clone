@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom"
 import * as yup from 'yup'
 import React from 'react' ;
 import { Loader } from "lucide-react"
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 const Inputs =[
     {
@@ -40,7 +40,6 @@ const Register = () => {
     const navigate = useNavigate();
     // isLoading to show spinner in the Register button 
     const [isLoading,setIsLoading] = React.useState(false);
-    const [error,setError] = React.useState<string>('');
     // Validation schema from yup
     const validationSchema = yup.object({
         name: yup.string().min(2,'The entered name is too short ').max(20,'The entered name is too long').required('The name is required'),
@@ -72,7 +71,7 @@ const Register = () => {
                     setIsLoading(false);
                 }
             } catch (error) {
-                setError(error.payload.error);
+                console.log(error)
             } finally {
                 setIsLoading(false); 
             }
