@@ -2,6 +2,7 @@ import Input from "@/components/Input"
 import { handleSignup } from "@/redux/slices/UserSlice"
 import {useFormik} from 'formik'
 import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 import * as yup from 'yup'
 const Inputs =[
     {
@@ -23,7 +24,7 @@ const Inputs =[
         name:'password'
     },
     {
-        label:'rePassword',
+        label:'Confirm password',
         type:'password',
         placeholder:'rePassword',
         name:'rePassword'
@@ -56,7 +57,10 @@ const Register = () => {
         validationSchema,
 })
     return <>
-    <form onSubmit={formikValues.handleSubmit} className="flex flex-col  mb-2  gap-2 ">
+    <div className=" container mx-auto p-2 " >
+
+    
+    <form onSubmit={formikValues.handleSubmit} className="   w-full max-w-sm mx-auto bg-white p-8 rounded-xl shadow-2xl ">
         {Inputs.map((input , index) => <Input
         key={index}
         data = {input}
@@ -67,15 +71,50 @@ const Register = () => {
         onChange={formikValues.handleChange}
         />
         )}
-        <label htmlFor="gender"></label>
-        <select defaultValue={`male`} value={formikValues.values.gender} onChange={formikValues.handleChange} onBlur={formikValues.handleBlur} name="gender" >
-        <option value="male">male</option>
-        <option value="female">female</option>
+
+        <div className="mb-3">
+        <label htmlFor="gender" className="block text-start text-gray-700 text-sm font-bold mb-2">
+        Gender
+        </label>
+        <select
+        id="gender"
+        name="gender"
+        value={formikValues.values.gender}
+        onChange={formikValues.handleChange}
+        onBlur={formikValues.handleBlur}
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 "
+        >
+            
+
+            
+        <option value="" disabled>
+            Select Gender
+        </option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
         </select>
-        <label htmlFor="dateOfBirth">Date Of Birth</label>
-        <input type="date" name="dateOfBirth" value={formikValues.values.dateOfBirth} onChange={formikValues.handleChange} onBlur={formikValues.handleBlur} />
-        <button type="submit">Register</button>
+        {formikValues.touched.gender && formikValues.errors.gender && (
+        <p className="mt-2 text-sm text-red-600">{formikValues.errors.gender}</p>
+        )}
+
+        </div>
+        <div className="mb-3">
+        <label className="block text-start text-gray-700 text-sm font-bold mb-2" htmlFor="dateOfBirth">Date Of Birth</label>
+        <input className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:border-indigo-500 " type="date" name="dateOfBirth" value={formikValues.values.dateOfBirth} onChange={formikValues.handleChange} onBlur={formikValues.handleBlur} />
+        </div>
+        <div className="flex flex-col">
+        <button className="w-full bg-indigo-500 text-white text-sm font-bold py-2 px-4 rounded-xl hover:bg-indigo-600 transition duration-300"
+        type="submit">
+        Register
+        </button>
+        <span>  Already have an account ? 
+        <Link className="underline font-bold  " to={'/login'} > Login now</Link>
+        </span>
+        
+        </div>
+        
     </form>
+    </div>
     </>
 }
 
