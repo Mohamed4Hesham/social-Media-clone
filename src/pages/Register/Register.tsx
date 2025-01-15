@@ -88,16 +88,16 @@ const Register = () => {
         value={formikValues.values.gender}
         onChange={formikValues.handleChange}
         onBlur={formikValues.handleBlur}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 "
+        className="w-full px-3 py-2  border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 "
         >
             
 
             
-        <option value="" disabled>
+        <option className="w-1/2 h-1/3" value="" disabled>
             Select Gender
         </option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
+        <option className="w-1/2 h-1/3" value="male">Male</option>
+        <option className="w-1/2 h-1/3" value="female">Female</option>
         </select>
         {formikValues.touched.gender && formikValues.errors.gender && (
         <p className="mt-2 text-sm text-red-600">{formikValues.errors.gender}</p>
@@ -108,7 +108,7 @@ const Register = () => {
 
         <div className="mb-3">
         <label className="block text-start text-gray-700 text-sm font-bold mb-2" htmlFor="dateOfBirth">Date Of Birth</label>
-        <input className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:border-indigo-500 " type="date" name="dateOfBirth" value={formikValues.values.dateOfBirth} onChange={formikValues.handleChange} onBlur={formikValues.handleBlur} />
+        <input className="w-full px-3 text-sm md:text-lg py-2 border border-gray-300 rounded-xl focus:outline-none focus:border-indigo-500 " type="date" name="dateOfBirth" value={formikValues.values.dateOfBirth} onChange={formikValues.handleChange} onBlur={formikValues.handleBlur} />
         </div>
 
 

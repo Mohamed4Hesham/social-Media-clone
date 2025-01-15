@@ -1,8 +1,19 @@
+import { LoginForm } from "@/interfaces/LoginForm";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const handleSignup = createAsyncThunk( 'user/handleSignup' , async (FormValues:UserType) => {
         const Response = await fetch(`https://linked-posts.routemisr.com/users/signup` , {
+            method:'POST',
+            body:JSON.stringify(FormValues),
+            headers:{'Content-Type':'application/json'},
+        });
+        const data = await Response.json();
+        return data;
+})
+
+export const handleLogin = createAsyncThunk( 'user/handleLogin' , async (FormValues:LoginForm) => {
+        const Response = await fetch(`https://linked-posts.routemisr.com/users/login` , {
             method:'POST',
             body:JSON.stringify(FormValues),
             headers:{'Content-Type':'application/json'},
