@@ -1,40 +1,3 @@
-import Input from "@/components/Input"
-import { handleSignup } from "@/redux/slices/UserSlice"
-import {useFormik} from 'formik'
-import { useDispatch } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
-import * as yup from 'yup'
-import React from 'react' ;
-import { Loader } from "lucide-react"
-import toast from 'react-hot-toast';
-import { Helmet } from 'react-helmet';
-const Inputs =[
-    {
-        label:'Name',
-        type:'text',
-        placeholder:'name',
-        name:'name'
-    },
-    {
-        label:'Email',
-        type:'text',
-        placeholder:'email',
-        name:'email'
-    },
-    {
-        label:'Password',
-        type:'password',
-        placeholder:'password',
-        name:'password'
-    },
-    {
-        label:'Confirm password',
-        type:'password',
-        placeholder:'rePassword',
-        name:'rePassword'
-    }
-    
-]
 import Input from "@/components/Input";
 import { handleSignup } from "@/redux/slices/UserSlice";
 import { useFormik } from "formik";
@@ -137,12 +100,12 @@ validationSchema,
 });
 return (
 <>
-    '
+    
     <Helmet>
     <title>Register</title>
     <meta name="description" content="Nested component" />
     </Helmet>
-    '
+    
     <div className=" container mx-auto p-2 ">
     <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
     <form

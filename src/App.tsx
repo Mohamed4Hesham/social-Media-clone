@@ -6,12 +6,15 @@ import { Provider } from 'react-redux'
 import { Store } from './redux/Store'
 import Login from './pages/Login/Login'
 import { Toaster } from 'react-hot-toast'
+import ProtectedRoute from './ProtectionLayer/ProtectedRoute'
+import Home from './pages/Home/Home'
 
 
 function App() {
 
   const Routes = createBrowserRouter([
     {path:'', element:<Layout/>,children:[
+      {path:'/home',element:<ProtectedRoute><Home/></ProtectedRoute>},
       {path:'/register', element:<Register/>},
       {path:'/login', element:<Login/>},
     ]}

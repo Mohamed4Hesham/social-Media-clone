@@ -4,6 +4,7 @@ export interface UserType {
     password:string,
     rePassword:string,
     dateOfBirth:string,
-    gender:string
+    gender:string,
+    token ?:string
 
 }

@@ -2,11 +2,14 @@ import Input from "@/components/Input";
 import * as yup from "yup";
 import { Loader } from "lucide-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { handleSignin } from "@/redux/slices/UserSlice";
+import { handleSignin, userSliceActions } from "@/redux/slices/UserSlice";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
+import { LoginForm } from "@/interfaces/LoginForm";
+import {Helmet} from 'react-helmet'
+
 
 const Inputs = [
     {
@@ -25,7 +28,8 @@ const Inputs = [
 
 const Login = () => {
     const [isLoading, setIsLoading] = React.useState(false);
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const validationSchema = yup.object({
     email: yup
@@ -49,14 +53,18 @@ const Login = () => {
         password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: async (values: any) => {
+    onSubmit: async (values: LoginForm) => {
         try{
             setIsLoading(true);
             const response = await dispatch(handleSignin(values));
             console.log(response);
             if (response.payload.message === "success") {
                 setIsLoading(false);
-                // navigate("/home");
+                const res =  userSliceActions.setToken(response.payload.token); 
+                toast.success("Successfully logged in!", { duration: 2000 });
+                localStorage.setItem("SocialMediaToken", response.payload.token);
+                console.log(res);
+                navigate("/home");
             }
             else if(response.payload.error){
                 setIsLoading(false);
@@ -74,26 +82,22 @@ const Login = () => {
     }); 
     
     return <>
+
+            <Helmet>
+                <title>Login </title>
+                <meta name="description" content="Login to your fav social media platform" />
+            </Helmet>
+            
     <form onSubmit={formikValues.handleSubmit}>
         {Inputs.map((input, index) => (
         <Input
             key={index}
             data={input}
-            touched={ formikValues.touched[input.name as keyof typeof formikValues.touched]
-
-            }
-            error={
-            formikValues.errors[
-                input.name as keyof typeof formikValues.errors
-            ]
-            }
-            value={
-            formikValues.values[
-                input.name as keyof typeof formikValues.values
-            ]
-            }
-            onBlur={formikValues.handleBlur}
+            touched={formikValues.touched[input.name as keyof LoginForm]}
+            error={formikValues.errors[input.name as keyof LoginForm]} 
+            value={formikValues.values[input.name   as keyof LoginForm]}
             onChange={formikValues.handleChange}
+            onBlur={formikValues.handleBlur}
         />
         ))}
 
@@ -109,10 +113,10 @@ const Login = () => {
             )}
         </button>
         <span>
-            {" "}
+            
             Don't have an account ?
             <Link className="underline font-bold  " to={"/register"}>
-            {" "}
+            
             Sign up now
             </Link>
         </span>

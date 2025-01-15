@@ -31,9 +31,16 @@ const userSlice = createSlice({
         password:'',
         rePassword:'',
         dateOfBirth:'',
-        gender:''
+        gender:'',
+        token: window.localStorage.getItem("SocialMediaToken")??null,
     },
-    reducers:{},
+    reducers:{
+        setToken : (state,action) => {
+            state.token = action.payload
+            console.log(state);
+            console.log(action);
+        }
+    },
     extraReducers: (builder)=>{
         builder.addCase(handleSignup.fulfilled,(state,action)=>{
             console.log(state);
