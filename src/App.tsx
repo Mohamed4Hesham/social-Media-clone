@@ -4,6 +4,7 @@ import Layout from './pages/Layout/Layout'
 import Register from './pages/Register/Register'
 import { Provider } from 'react-redux'
 import { Store } from './redux/Store'
+import Login from './pages/Login/Login'
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const Routes = createBrowserRouter([
     {path:'', element:<Layout/>,children:[
       {path:'/register', element:<Register/>},
+      {path:'/login', element:<Login/>},
     ]}
   ])
 
