@@ -7,8 +7,8 @@ import { handleSignin, userSliceActions } from "@/redux/slices/UserSlice";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import { LoginForm } from "@/interfaces/LoginForm";
-import {Helmet} from 'react-helmet'
 import Input from "@/components/Dynamic input/Input";
+import { Helmet } from "react-helmet-async";
 
 
 const Inputs = [
@@ -83,10 +83,11 @@ const Login = () => {
     
     return <>
 
-            <Helmet>
-                <title>Login </title>
-                <meta name="description" content="Login to your fav social media platform" />
-            </Helmet>
+        <Helmet>
+        <title>Login Page</title>
+        <meta name="description" content="Login to our social media app , MM11" />
+        <link rel="canonical" href="https://example.com" />
+        </Helmet>
             
     <form onSubmit={formikValues.handleSubmit}>
         {Inputs.map((input, index) => (

@@ -8,6 +8,8 @@ import Login from './pages/Login/Login'
 import { Toaster } from 'react-hot-toast'
 import ProtectedRoute from './ProtectionLayer/ProtectedRoute'
 import Home from './pages/Home/Home'
+import { HelmetProvider } from 'react-helmet-async';
+
 
 
 function App() {
@@ -24,9 +26,11 @@ function App() {
     <>
       <Provider store={Store}>
       <Toaster/>
+      <HelmetProvider>
       <RouterProvider router={Routes}>
 
       </RouterProvider>
+      </HelmetProvider>
       </Provider>
     </>
   )

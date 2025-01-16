@@ -5,9 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import React from "react";
 import { Loader } from "lucide-react";
-import toast, { Toaster } from "react-hot-toast";
-import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 import Input from "@/components/Dynamic input/Input";
+import { Helmet } from "react-helmet-async";
 const Inputs = [
 {
 label: "Name",
@@ -103,7 +103,7 @@ return (
     
     <Helmet>
     <title>Register</title>
-    <meta name="description" content="Nested component" />
+    <meta name="description" content="Register to MM11" />
     </Helmet>
     
     <div className=" container mx-auto p-2 ">
