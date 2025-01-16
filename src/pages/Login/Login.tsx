@@ -1,4 +1,3 @@
-import Input from "@/components/Input";
 import * as yup from "yup";
 import { Loader } from "lucide-react";
 import React from "react";
@@ -9,6 +8,7 @@ import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import { LoginForm } from "@/interfaces/LoginForm";
 import {Helmet} from 'react-helmet'
+import Input from "@/components/Dynamic input/Input";
 
 
 const Inputs = [
@@ -93,7 +93,7 @@ const Login = () => {
         <Input
             key={index}
             data={input}
-            touched={formikValues.touched[input.name as keyof LoginForm]}
+            touched={formikValues.touched[input.name as keyof  LoginForm]}
             error={formikValues.errors[input.name as keyof LoginForm]} 
             value={formikValues.values[input.name   as keyof LoginForm]}
             onChange={formikValues.handleChange}

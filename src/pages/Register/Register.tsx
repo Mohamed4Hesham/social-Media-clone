@@ -1,4 +1,3 @@
-import Input from "@/components/Input";
 import { handleSignup } from "@/redux/slices/UserSlice";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
@@ -8,6 +7,7 @@ import React from "react";
 import { Loader } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import Input from "@/components/Dynamic input/Input";
 const Inputs = [
 {
 label: "Name",
