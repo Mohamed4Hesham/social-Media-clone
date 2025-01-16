@@ -1,5 +1,5 @@
 import { LoginForm } from "@/interfaces/LoginForm";
-import { SigninAction } from "@/interfaces/LoginResponse";
+import { LoginRes } from "@/interfaces/LoginResponse";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -13,13 +13,13 @@ export const handleSignup = createAsyncThunk( 'user/handleSignup' , async (FormV
         return data;
 })
 
-export const handleSignin = createAsyncThunk<SigninAction, LoginForm>( 'user/handleSignin' , async (loginValues:LoginForm) => {
+export const handleSignin = createAsyncThunk<LoginRes, LoginForm>( 'user/handleSignin' , async (loginValues:LoginForm) => {
     const Response = await fetch(`https://linked-posts.routemisr.com/users/signin` , {
         method:'POST',
         body:JSON.stringify(loginValues),
         headers:{'Content-Type':'application/json'},
     });
-    const data :SigninAction= await Response.json();
+    const data :LoginRes= await Response.json();
     return data;
 })
 

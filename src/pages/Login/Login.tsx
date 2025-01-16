@@ -10,7 +10,7 @@ import { LoginForm } from "@/interfaces/LoginForm";
 import Input from "@/components/Dynamic input/Input";
 import { Helmet } from "react-helmet-async";
 import { AppDispatch } from "@/redux/Store";
-import { SigninAction } from "@/interfaces/LoginResponse";
+import { LoginRes } from "@/interfaces/LoginResponse";
 
 
 const Inputs = [
@@ -33,6 +33,7 @@ const Login = () => {
     const dispatch :AppDispatch   = useDispatch();
     const navigate = useNavigate();
 
+    //validation schema using yup
     const validationSchema = yup.object({
     email: yup
         .string()
@@ -49,6 +50,7 @@ const Login = () => {
         ),
     });
 
+    //form handling using formik integrated with yup for real time validation
     const formikValues = useFormik({
     initialValues: {
         email: "",
@@ -58,7 +60,7 @@ const Login = () => {
     onSubmit: async (values: LoginForm) => {
         try{
             setIsLoading(true);
-            const response :SigninAction  = await  dispatch(handleSignin(values)).unwrap();
+            const response :LoginRes  = await  dispatch(handleSignin(values)).unwrap();
             console.log(response);
             if (response.message === "success") {
                 setIsLoading(false);
@@ -66,7 +68,7 @@ const Login = () => {
                 toast.success("Successfully logged in!", { duration: 2000 });
                 localStorage.setItem("SocialMediaToken",response.token as string); 
                 console.log(res);
-                navigate("/home");
+                navigate("/");
             }
             else if(response.error){
                 setIsLoading(false);
@@ -84,7 +86,7 @@ const Login = () => {
     }); 
     
     return <>
-
+        {/* helmet to provide metadata to the page  to get our app seo friendly*/}
         <Helmet>
         <title>Login Page</title>
         <meta name="description" content="Login to our social media app , MM11" />
