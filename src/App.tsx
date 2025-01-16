@@ -15,22 +15,24 @@ import { HelmetProvider } from 'react-helmet-async';
 function App() {
 
   const Routes = createBrowserRouter([
-    {path:'', element:<Layout/>,children:[
-      {index:true,element:<ProtectedRoute><Home/></ProtectedRoute>},
-      {path:'/register', element:<Register/>},
-      {path:'/login', element:<Login/>},
-    ]}
+    {
+      path: '', element: <Layout />, children: [
+        { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
+        { path: '/register', element: <Register /> },
+        { path: '/login', element: <Login /> },
+      ]
+    }
   ])
 
   return (
     <>
       <Provider store={Store}>
-      <Toaster/>
-      <HelmetProvider>
-      <RouterProvider router={Routes}>
+        <Toaster />
+        <HelmetProvider>
+          <RouterProvider router={Routes}>
 
-      </RouterProvider>
-      </HelmetProvider>
+          </RouterProvider>
+        </HelmetProvider>
       </Provider>
     </>
   )
