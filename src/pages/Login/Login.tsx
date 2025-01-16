@@ -9,6 +9,8 @@ import { useFormik } from "formik";
 import { LoginForm } from "@/interfaces/LoginForm";
 import Input from "@/components/Dynamic input/Input";
 import { Helmet } from "react-helmet-async";
+import { AppDispatch } from "@/redux/Store";
+import { SigninAction } from "@/interfaces/LoginResponse";
 
 
 const Inputs = [
@@ -28,7 +30,7 @@ const Inputs = [
 
 const Login = () => {
     const [isLoading, setIsLoading] = React.useState(false);
-    const dispatch = useDispatch();
+    const dispatch :AppDispatch   = useDispatch();
     const navigate = useNavigate();
 
     const validationSchema = yup.object({
@@ -56,24 +58,24 @@ const Login = () => {
     onSubmit: async (values: LoginForm) => {
         try{
             setIsLoading(true);
-            const response = await dispatch(handleSignin(values));
+            const response :SigninAction  = await  dispatch(handleSignin(values)).unwrap();
             console.log(response);
-            if (response.payload.message === "success") {
+            if (response.message === "success") {
                 setIsLoading(false);
-                const res =  userSliceActions.setToken(response.payload.token); 
+                const res =  userSliceActions.setToken(response.token); 
                 toast.success("Successfully logged in!", { duration: 2000 });
-                localStorage.setItem("SocialMediaToken", response.payload.token);
+                localStorage.setItem("SocialMediaToken",response.token as string); 
                 console.log(res);
                 navigate("/home");
             }
-            else if(response.payload.error){
+            else if(response.error){
                 setIsLoading(false);
-                toast.error(response.payload.error)  
+                toast.error(response.error)  
             }
         }   
         catch(error){
             setIsLoading(false);
-            toast.error("An error occurred");
+            toast.error(`An error occurred : ${error}`);
         }
         finally{
             setIsLoading(false);

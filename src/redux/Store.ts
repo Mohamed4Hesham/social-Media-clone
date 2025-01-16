@@ -8,3 +8,4 @@ export const Store = configureStore({
 });
 
 
+export type AppDispatch = typeof Store.dispatch;

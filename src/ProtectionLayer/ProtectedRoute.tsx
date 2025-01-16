@@ -6,7 +6,7 @@ const ProtectedRoute = ({children}:{children:React.ReactNode}) => {
     if(localStorage.getItem('SocialMediaToken') !== null){
     return children
   }else {
-   return <Navigate to={'/register'}/>
+  return <Navigate to={'/register'}/>
 
   }
 }
