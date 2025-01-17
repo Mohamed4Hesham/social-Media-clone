@@ -1,6 +1,6 @@
 import { handleSignup } from "@/redux/slices/UserSlice";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch  } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import React from "react";
@@ -8,6 +8,8 @@ import { Loader } from "lucide-react";
 import toast from "react-hot-toast";
 import Input from "@/components/Dynamic input/Input";
 import { Helmet } from "react-helmet-async";
+import { RegisterForm, RegisterRes } from "@/interfaces/RegisterRes";
+import { AppDispatch } from "@/redux/Store";
 const Inputs = [
 {
 label: "Name",
@@ -35,7 +37,7 @@ name: "rePassword",
 },
 ];
 const Register = () => {
-const dispatch = useDispatch();
+const dispatch :AppDispatch   = useDispatch();
 const navigate = useNavigate();
 const [isLoading, setIsLoading] = React.useState(false);
 
@@ -78,20 +80,21 @@ initialValues: {
     gender: "",
     dateOfBirth: "",
 },
-onSubmit: async (values) => {
+onSubmit: async (values: RegisterForm) => {
     try {
     setIsLoading(true);
-    const response = await dispatch(handleSignup(values));
-    if (response.payload.message === "success") {
+    const response :RegisterRes = await dispatch(handleSignup(values)).unwrap(); ;
+    if (response.message === "success") {
         toast.success("Successfully created!", { duration: 2000 });
         navigate("/login");
         setIsLoading(false);
-    } else if (response.payload.error) {
-        toast.error(response.payload.error, { duration: 2000 });
+    } else if (response.error) {
+        toast.error(response.error, { duration: 2000 });
         setIsLoading(false);
     }
     } catch (error) {
         setIsLoading(true);
+        console.log(error);
     } finally {
     setIsLoading(false);
     }

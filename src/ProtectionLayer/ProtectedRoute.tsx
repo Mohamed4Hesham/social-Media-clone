@@ -7,7 +7,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     return children
   } else {
     return <Navigate to={'/register'} />
-
   }
 }
 

@@ -1,11 +1,12 @@
 import { LoginForm } from "@/interfaces/LoginForm";
 import { LoginRes } from "@/interfaces/LoginResponse";
+import { RegisterForm, RegisterRes } from "@/interfaces/RegisterRes";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const handleSignup = createAsyncThunk(
+export const handleSignup = createAsyncThunk< RegisterRes , RegisterForm>(
   "user/handleSignup",
-  async (FormValues: UserType) => {
+  async (FormValues: RegisterForm) => {
     const Response = await fetch(
       `https://linked-posts.routemisr.com/users/signup`,
       {
@@ -14,7 +15,7 @@ export const handleSignup = createAsyncThunk(
         headers: { "Content-Type": "application/json" },
       }
     );
-    const data = await Response.json();
+    const data:RegisterRes = await Response.json();
     return data;
   }
 );

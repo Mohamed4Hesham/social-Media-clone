@@ -9,6 +9,7 @@ import { Toaster } from 'react-hot-toast'
 import ProtectedRoute from './ProtectionLayer/ProtectedRoute'
 import Home from './pages/Home/Home'
 import { HelmetProvider } from 'react-helmet-async';
+import PublicRoutes from './ProtectionLayer/PublicRoutes'
 
 
 
@@ -18,8 +19,8 @@ function App() {
     {
       path: '', element: <Layout />, children: [
         { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
-        { path: '/register', element: <Register /> },
-        { path: '/login', element: <Login /> },
+        { path: '/register', element: <PublicRoutes> <Register /> </PublicRoutes> },
+        { path: '/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
       ]
     }
   ])
