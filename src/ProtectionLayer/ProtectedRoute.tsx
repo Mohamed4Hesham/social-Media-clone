@@ -1,9 +1,10 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
-  if (localStorage.getItem('SocialMediaToken') !== null) {
+  if (Cookies.get('SocialMediaToken') !== null) {
     return children
   } else {
     return <Navigate to={'/register'} />

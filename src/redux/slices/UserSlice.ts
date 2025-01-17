@@ -3,6 +3,7 @@ import { LoginRes } from "@/interfaces/LoginResponse";
 import { RegisterForm, RegisterRes } from "@/interfaces/RegisterRes";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Cookies from 'js-cookie'
 
 export const handleSignup = createAsyncThunk< RegisterRes , RegisterForm>(
   "user/handleSignup",
@@ -45,7 +46,7 @@ const userSlice = createSlice({
     rePassword: "",
     dateOfBirth: "",
     gender: "",
-    token: window.localStorage.getItem("SocialMediaToken") ?? null,
+    token: Cookies.get("SocialMediaToken") ?? null,
   },
   reducers: {
     setToken: (state, action) => {

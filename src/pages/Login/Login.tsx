@@ -11,7 +11,7 @@ import Input from "@/components/Dynamic input/Input";
 import { Helmet } from "react-helmet-async";
 import { AppDispatch } from "@/redux/Store";
 import { LoginRes } from "@/interfaces/LoginResponse";
-
+import Cookies from 'js-cookie'
 
 const Inputs = [
     {
@@ -29,6 +29,7 @@ const Inputs = [
     ];
 
 const Login = () => {
+    
     const [isLoading, setIsLoading] = React.useState(false);
     const dispatch :AppDispatch   = useDispatch();
     const navigate = useNavigate();
@@ -66,7 +67,7 @@ const Login = () => {
                 setIsLoading(false);
                 const res =  userSliceActions.setToken(response.token); 
                 toast.success("Successfully logged in!", { duration: 2000 });
-                localStorage.setItem("SocialMediaToken",response.token as string); 
+                Cookies.set("SocialMediaToken",response.token as string); 
                 console.log(res);
                 navigate("/");
             }
