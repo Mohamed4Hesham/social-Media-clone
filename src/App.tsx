@@ -5,15 +5,17 @@ import Register from './pages/Register/Register'
 import { Provider } from 'react-redux'
 import { Store } from './redux/Store'
 import Login from './pages/Login/Login'
-import { Toaster } from 'react-hot-toast'
+import  toast, { Toaster } from 'react-hot-toast'
 import ProtectedRoute from './ProtectionLayer/ProtectedRoute'
 import Home from './pages/Home/Home'
 import { HelmetProvider } from 'react-helmet-async';
 import PublicRoutes from './ProtectionLayer/PublicRoutes'
-
+import { useIsOnline } from 'react-use-is-online';
+import { useEffect, useRef } from 'react'
 
 
 function App() {
+  const {  isOffline } = useIsOnline();
 
   const Routes = createBrowserRouter([
     {
@@ -23,14 +25,35 @@ function App() {
         { path: '/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
       ]
     }
-  ])
+  ])  
+
+
+  const wasOffline = useRef(false); 
+  
+  useEffect(() => {
+    toast.dismiss(); 
+
+    if (isOffline) {
+      toast.error('You are Offline', { duration: isOffline ? Infinity :  0 });
+      wasOffline.current = true; 
+    } else if (wasOffline.current) {
+      toast.success('You are Online', { duration: 5000 });
+      wasOffline.current = false; 
+    }
+  }, [isOffline]);
+
+
 
   return (
     <>
+    
       <Provider store={Store}>
+      
         <Toaster />
+        
         <HelmetProvider>
           <RouterProvider router={Routes}>
+          
 
           </RouterProvider>
         </HelmetProvider>
