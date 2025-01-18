@@ -1,21 +1,23 @@
 import { Unplug } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { DropdownMenuRadioGroupDemo } from "./dropDownMenu";
 
 export default function Navbar() {
 return (
     <nav className=" bg-gray-900 border-gray-200">
-    <div className="flex justify-between items-center">
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link
-        to='/'
-        className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-            <Unplug className="text-white w-8 h-12"/>
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-                Connect
-            </span>
-        </Link>l
+        <div>
+            <Link
+            to='/'
+            className="flex items-center space-x-3 rtl:space-x-reverse"
+            >
+                <Unplug className="text-white w-8 h-12"/>
+                <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
+                    Connect
+                </span>
+            </Link>
+        </div>
         <button
         data-collapse-toggle="navbar-default"
         type="button"
@@ -61,11 +63,10 @@ return (
             </li>
         </ul>
         </div>
-    </div>
-    </div>
-    <div className="thirdSection">
-            <button>Action Button</button>
+        <div className="thirdSection">
+            <DropdownMenuRadioGroupDemo/>
         </div>
+    </div>
     </nav>
 );
 }
