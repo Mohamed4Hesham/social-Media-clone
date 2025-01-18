@@ -12,6 +12,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import PublicRoutes from './ProtectionLayer/PublicRoutes'
 import { useIsOnline } from 'react-use-is-online';
 import { useEffect, useRef } from 'react'
+import { AlertCircleIcon } from 'lucide-react'
 
 
 function App() {
@@ -34,8 +35,17 @@ function App() {
     toast.dismiss(); 
 
     if (isOffline) {
-      toast.error('You are Offline', { duration: isOffline ? Infinity :  0 });
-      wasOffline.current = true; 
+      toast.error(<>You are Offline {` : `}
+          <button onClick={() => window.location.reload()} className="text-blue-500 underline hover:text-blue-700">
+            Try Again
+          </button>
+        </>,
+        {
+          icon: <AlertCircleIcon className="text-red-700" />,
+          duration: isOffline ? Infinity : 0,
+        }
+      );
+            wasOffline.current = true; 
     } else if (wasOffline.current) {
       toast.success('You are Online', { duration: 5000 });
       wasOffline.current = false; 
