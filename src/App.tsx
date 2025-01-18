@@ -13,6 +13,7 @@ import PublicRoutes from './ProtectionLayer/PublicRoutes'
 import { useIsOnline } from 'react-use-is-online';
 import { useEffect, useRef } from 'react'
 import { AlertCircleIcon } from 'lucide-react'
+import NotFound from './pages/Not-found/Not-found'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
         { path: '/register', element: <PublicRoutes> <Register /> </PublicRoutes> },
         { path: '/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
+        {path: '*', element: <ProtectedRoute><NotFound /></ProtectedRoute> }
       ]
     }
   ])  
@@ -39,13 +41,9 @@ function App() {
           <button onClick={() => window.location.reload()} className="text-blue-500 underline hover:text-blue-700">
             Try Again
           </button>
-        </>,
-        {
-          icon: <AlertCircleIcon className="text-red-700" />,
-          duration: isOffline ? Infinity : 0,
-        }
+        </>,{icon: <AlertCircleIcon className="text-red-700" />,duration: isOffline ? Infinity : 0}
       );
-            wasOffline.current = true; 
+      wasOffline.current = true; 
     } else if (wasOffline.current) {
       toast.success('You are Online', { duration: 5000 });
       wasOffline.current = false; 
