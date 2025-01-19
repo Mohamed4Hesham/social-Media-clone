@@ -1,5 +1,4 @@
 import { CircleUserRound, House, Unplug } from "lucide-react";
-import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { DropdownMenuRadioGroupDemo } from "./dropDownMenu";
 
