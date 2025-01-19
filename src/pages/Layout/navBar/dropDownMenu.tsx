@@ -5,6 +5,7 @@
     } from "@/components/ui/dropdown-menu"
 import { Link } from "react-router-dom";
 import { TableOfContents } from "lucide-react";
+import Cookies from "js-cookie";
 
     export function DropdownMenuRadioGroupDemo() {
 
@@ -22,7 +23,11 @@ import { TableOfContents } from "lucide-react";
                         <Link className="self-center text-white " to={'/profile'}>
                         Profile
                         </Link>
-                        <button  className="self-center text-white ">
+                        <button onClick={() =>{
+                        Cookies.remove('SocialMediaToken')
+                        window.location.reload();
+                        }}
+                        className="self-center text-white ">
                             Logout
                         </button>
                         
