@@ -2,8 +2,7 @@
     import {
         DropdownMenu,
         DropdownMenuContent,
-        DropdownMenuRadioGroup,
-        DropdownMenuRadioItem,
+
         DropdownMenuTrigger,
     } from "@/components/ui/dropdown-menu"
 import { Link } from "react-router-dom";
@@ -14,21 +13,23 @@ import { TableOfContents } from "lucide-react";
     return (
         <DropdownMenu>
         <DropdownMenuTrigger asChild>
-            <TableOfContents className="rounded-md text-white w-8 h-12" />
+            <TableOfContents className="rounded-md cursor-pointer text-white w-8 h-12" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-gray-900 p-8 rounded ">
-            <DropdownMenuRadioGroup >
-                <DropdownMenuRadioItem value="top" className="text-white">
-                <Link to={"/profile"}>
-                Profile
-                </Link>
-                </DropdownMenuRadioItem>
-            <Link to={"/login"}>
-                <DropdownMenuRadioItem value="top" className="text-white">
-                Logout
-                </DropdownMenuRadioItem>
-            </Link>
-            </DropdownMenuRadioGroup>
+        <DropdownMenuContent className="bg-gray-900  rounded-xl me-12 ">
+                
+                    <div className="flex flex-col p-2 gap-2 ">
+                        <Link className="self-center text-white " to={'/'}>
+                        Home
+                        </Link>
+                        <Link className="self-center text-white " to={'/profile'}>
+                        Profile
+                        </Link>
+                        <button className="self-center text-white ">
+                            Logout
+                        </button>
+                        
+                    </div>
+                
         </DropdownMenuContent>
         </DropdownMenu>
     );
