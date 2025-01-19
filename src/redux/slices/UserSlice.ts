@@ -46,7 +46,7 @@ const userSlice = createSlice({
     rePassword: "",
     dateOfBirth: "",
     gender: "",
-    token: Cookies.get("SocialMediaToken") ?? null,
+    token: Cookies.get("SocialMediaToken") ?? undefined,
   },
   reducers: {
     setToken: (state, action) => {
