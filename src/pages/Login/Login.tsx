@@ -73,12 +73,12 @@ const Login = () => {
             }
             else if(response.error){
                 setIsLoading(false);
-                toast.error(response.error)  
+                toast.error('Something went wrong ! Check your email or password', { duration: 5000 });  
             }
         }   
         catch(error){
             setIsLoading(false);
-            toast.error(`An error occurred : ${error}`);
+            toast.error(`An error occurred : ${error}`, { duration: 5000 });
         }
         finally{
             setIsLoading(false);
@@ -125,7 +125,7 @@ const Login = () => {
         <span>
             
             Don't have an account ?
-            <Link className="underline font-bold  " to={"/register"}>
+            <Link className="underline font-bold  " to={"/auth/register"}>
             
             Sign up now
             </Link>

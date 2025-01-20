@@ -200,7 +200,7 @@ return (
         <span>
             {" "}
             Already have an account ?
-            <Link className="underline font-bold  " to={"/login"}>
+            <Link className="underline font-bold  " to={"/auth/login"}>
             {" "}
             Login now
             </Link>
