@@ -93,8 +93,12 @@ const Login = () => {
         <meta name="description" content="Login to our social media app , MM11" />
         <link rel="canonical" href="https://example.com" />
         </Helmet>
-            
-    <form onSubmit={formikValues.handleSubmit}>
+
+    <div className=" container mx-auto p-2 ">
+    <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+
+    <form className="   w-full max-w-sm mx-auto bg-white p-8 rounded-xl shadow-2xl "
+    onSubmit={formikValues.handleSubmit}>
         {Inputs.map((input, index) => (
         <Input
             key={index}
@@ -128,6 +132,7 @@ const Login = () => {
         </span>
         </div>
     </form>
+    </div>
     </>
 }
 
