@@ -23,8 +23,8 @@ function App() {
     {
       path: '', element: <Layout />, children: [
         { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
-        { path: '/register', element: <PublicRoutes> <Register /> </PublicRoutes> },
-        { path: '/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
+        { path: '/auth/register', element: <PublicRoutes> <Register /> </PublicRoutes> },
+        { path: '/auth/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
         {path: '*', element: <ProtectedRoute><NotFound /></ProtectedRoute> }
       ]
     }
