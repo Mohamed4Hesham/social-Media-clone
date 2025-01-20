@@ -5,7 +5,7 @@ const Settings = () => {
     return <>
 
     <GridDynamicContainer cols={12} className=' gap-3' >
-    <SideNav />
+        <SideNav />
 
         <Layout />
     </GridDynamicContainer>
