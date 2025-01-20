@@ -1,6 +1,8 @@
+import { ChangePasswordRes } from "@/interfaces/changePasswordRes";
 import { LoginForm } from "@/interfaces/LoginForm";
 import { LoginRes } from "@/interfaces/LoginResponse";
 import { RegisterForm, RegisterRes } from "@/interfaces/RegisterRes";
+import { resetPasswordPayload } from "@/interfaces/resetPassword";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie'
@@ -36,6 +38,25 @@ export const handleSignin = createAsyncThunk<LoginRes, LoginForm>(
     return data;
   }
 );
+
+export const resetPassword = createAsyncThunk<ChangePasswordRes, resetPasswordPayload>(
+  "user/resetPassword",
+  async (resetPasswordValues: resetPasswordPayload) => {
+    const Response = await fetch(
+      'https://linked-posts.routemisr.com/users/change-password',
+      {
+        method: "PATCH",
+        body: JSON.stringify(resetPasswordValues),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${Cookies.get("SocialMediaToken")}`
+        }
+      }
+    );
+    const data: ChangePasswordRes = await Response.json();
+    return data;
+  }
+)
 
 const userSlice = createSlice({
   name: "user",

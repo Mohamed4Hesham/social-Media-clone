@@ -18,7 +18,6 @@ const GridDynamicContainer = ({cols , children , className }:{cols:number , chil
         <div className={`grid ${GridSystem} ${className} `}>
                 {children}
         </div>
-
     </>
 }
 
