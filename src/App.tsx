@@ -17,6 +17,7 @@ import NotFound from './pages/Not-found/Not-found'
 import ChangeProfilePic from './pages/Settings/ChangeProfilePic/ChangeProfilePic'
 import ChangePassword from './pages/Settings/ChangePassword/ChangePassword'
 import Settings from './pages/Settings/Settings'
+import Empty from './pages/Settings/Empty/Empty'
 
 
 
@@ -28,8 +29,10 @@ function App() {
       path: '', element: <Layout />, children: [
         { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
         { path:'settings', element: <ProtectedRoute><Settings /></ProtectedRoute>, children: [
-          { index:true, element:<ProtectedRoute><ChangePassword /></ProtectedRoute> },
+          { index: true, element: <ProtectedRoute><Empty /></ProtectedRoute> },
+          { path: 'ChangePassword', element:<ProtectedRoute><ChangePassword /></ProtectedRoute> },
           { path: 'ChangeProfilePic', element:<ProtectedRoute><ChangeProfilePic /></ProtectedRoute> },
+          {path:'*', element: <ProtectedRoute><NotFound /></ProtectedRoute>}
         ] },
         { path: '/auth/register', element: <PublicRoutes> <Register /> </PublicRoutes> },
         { path: '/auth/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
