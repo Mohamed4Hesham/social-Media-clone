@@ -14,9 +14,9 @@ import { useIsOnline } from 'react-use-is-online';
 import { useEffect, useRef } from 'react'
 import { AlertCircleIcon } from 'lucide-react'
 import NotFound from './pages/Not-found/Not-found'
-import Settingslayout from './pages/Settings/Layout'
-import ChangePassword from './pages/Login/changePassword'
-import ProfilePicture from './components/ProfilePicture/ProfilePicture'
+import Settingslayout from './pages/Settings/Settings'
+import ChangeProfilePic from './pages/Settings/ChangeProfilePic/ChangeProfilePic'
+import ChangePassword from './pages/Settings/ChangePassword/ChangePassword'
 
 
 function App() {
@@ -26,9 +26,9 @@ function App() {
     {
       path: '', element: <Layout />, children: [
         { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
-        { path:'/settings', element: <ProtectedRoute><Settingslayout /></ProtectedRoute>, children: [
-          { path: '/changePassword', element:<ProtectedRoute><ChangePassword /></ProtectedRoute> },
-          { path: '/ProfilePicture', element:<ProtectedRoute><ProfilePicture /></ProtectedRoute> },
+        { path:'settings', element: <ProtectedRoute><Settingslayout /></ProtectedRoute>, children: [
+          { index:true, element:<ProtectedRoute><ChangePassword /></ProtectedRoute> },
+          { path: 'ChangeProfilePic', element:<ProtectedRoute><ChangeProfilePic /></ProtectedRoute> },
         ] },
         { path: '/auth/register', element: <PublicRoutes> <Register /> </PublicRoutes> },
         { path: '/auth/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
