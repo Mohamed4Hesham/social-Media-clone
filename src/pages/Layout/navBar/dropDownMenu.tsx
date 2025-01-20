@@ -1,12 +1,25 @@
-    import {
-        DropdownMenu,
-        DropdownMenuContent,
-        DropdownMenuTrigger,
-    } from "@/components/ui/dropdown-menu"
+import {DropdownMenu,DropdownMenuContent,DropdownMenuTrigger,} from "@/components/ui/dropdown-menu"
 import { Link } from "react-router-dom";
 import { CircleUserRound, Cog, House, LogOut, TableOfContents } from "lucide-react";
 import Cookies from "js-cookie";
 
+    const Items = [
+        {
+            label: "Home",
+            href: "/",
+            icon: House,
+        },
+        {
+            label: "Profile",
+            href: "/profile",
+            icon: CircleUserRound,
+        },    
+        {
+            label: "Settings",
+            href: "/settings",
+            icon: Cog,
+        }
+    ]
     export function DropdownMenuRadioGroupDemo() {
 
     return (
@@ -17,27 +30,15 @@ import Cookies from "js-cookie";
         <DropdownMenuContent className="bg-gray-900  rounded-xl me-12 ">
                     
                     <div className="flex flex-col p-2 gap-2 ">
-                        <Link className=" text-white " to={'/'}>
-                        <div className="flex justify-start items-center gap-2">
-                            <House className="w-5 h-5 items-center text-white" />
-                            <span>Home</span>
-                        </div>
+                        {Items.map((item) => (
+                            <Link className=" text-white " to={item.href}>
+                            <div className="flex justify-start items-center gap-2">
+                                <item.icon className="w-5 h-5 items-center text-white" />
+                                <span>{item.label}</span>
+                            </div>
+                            </Link>
+                        ))}
                         
-                        </Link>
-                        <Link className=" text-white " to={'/profile'}>
-                        <div className="flex justify-start items-center gap-2">
-                            <CircleUserRound className="w-5 h-5 items-center text-white" />
-                            <span>Profile</span>
-                        </div>
-                        
-                        </Link>
-                        <Link className=" text-white " to={'/settings'}>
-                        <div className="flex justify-start items-center gap-2">
-                            <Cog className="w-5 h-5" />
-                            <span>Settings</span>
-                        </div>
-                        
-                        </Link>
                         <button onClick={() =>{
                         Cookies.remove('SocialMediaToken')
                         window.location.reload();
