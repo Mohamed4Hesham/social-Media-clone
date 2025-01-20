@@ -14,6 +14,7 @@ import { useIsOnline } from 'react-use-is-online';
 import { useEffect, useRef } from 'react'
 import { AlertCircleIcon } from 'lucide-react'
 import NotFound from './pages/Not-found/Not-found'
+import Settings from './pages/Settings/Settings'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     {
       path: '', element: <Layout />, children: [
         { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
+        { path:'/settings', element: <ProtectedRoute><Settings /></ProtectedRoute> },
         { path: '/auth/register', element: <PublicRoutes> <Register /> </PublicRoutes> },
         { path: '/auth/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
         {path: '*', element: <ProtectedRoute><NotFound /></ProtectedRoute> }

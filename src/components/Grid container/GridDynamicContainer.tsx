@@ -1,5 +1,5 @@
 
-const GridDynamicContainer = ({cols , children , className }:{cols:number , children:React.ReactNode , className:string}) => {
+const GridDynamicContainer = ({cols , children , className }:{cols:number , children:React.ReactNode , className?:string}) => {
     const GridSystem = {
         1: 'grid-cols-1',
         2: 'grid-cols-2',
