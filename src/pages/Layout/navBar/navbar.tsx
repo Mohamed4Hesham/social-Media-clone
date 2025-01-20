@@ -63,6 +63,7 @@ export default function Navbar() {
                         <CircleUserRound className="w-6 h-6 items-center text-white" />
                     </NavLink>
                     </li>
+                    
                     <li>
                     <button
                     onClick={() =>{
