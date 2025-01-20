@@ -23,11 +23,11 @@ import Cookies from "js-cookie";
     export function DropdownMenuRadioGroupDemo() {
 
     return (
-        <DropdownMenu>
+        <DropdownMenu >
         <DropdownMenuTrigger asChild>
             <TableOfContents className="rounded-md cursor-pointer text-white w-8 h-12" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-gray-900  rounded-xl me-12 ">
+        <DropdownMenuContent side="bottom"  align="end" className="bg-gray-900  rounded-xl  ">
                     
                     <div className="flex flex-col p-2 gap-2 ">
                         {Items.map((item) => (
