@@ -38,9 +38,8 @@ function App() {
     }
   ])  
 
-
   const wasOffline = useRef(false); 
-  
+
   useEffect(() => {
     toast.dismiss(); 
 
