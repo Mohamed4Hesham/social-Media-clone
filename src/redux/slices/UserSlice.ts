@@ -51,8 +51,7 @@ const userSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
-      console.log(state);
-      console.log(action);
+      
     },
   },
   extraReducers: (builder) => {

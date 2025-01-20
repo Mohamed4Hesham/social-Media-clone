@@ -65,7 +65,7 @@ const Login = () => {
             console.log(response);
             if (response.message === "success") {
                 setIsLoading(false);
-                const res =  userSliceActions.setToken(response.token); 
+                const res =  dispatch(userSliceActions.setToken(response.token));
                 toast.success("Successfully logged in!", { duration: 2000 });
                 Cookies.set("SocialMediaToken",response.token as string); 
                 console.log(res);
