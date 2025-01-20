@@ -1,14 +1,14 @@
-// import GridDynamicContainer from '@/components/Grid container/GridDynamicContainer'
-// import SideNav from '@/components/SideNav/SideNav'
+import GridDynamicContainer from '@/components/Grid container/GridDynamicContainer'
+import SideNav from '@/components/SideNav/SideNav'
 import Layout from './Layout'
 const Settings = () => {
     return <>
 
-    {/* <GridDynamicContainer cols={12} className=' gap-3' > */}
-        {/* <SideNav /> */}
+    <GridDynamicContainer cols={12} className=' gap-3' >
+        <SideNav />
 
         <Layout />
-    {/* </GridDynamicContainer> */}
+    </GridDynamicContainer>
     
     </>
 }

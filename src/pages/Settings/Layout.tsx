@@ -3,11 +3,11 @@ import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
     return <>
-        {/* <div className='col-span-9' > */}
+        <div className='col-span-9' >
                 <Outlet>
                     
                 </Outlet>
-        {/* </div> */}
+        </div>
     </>
 }
 
