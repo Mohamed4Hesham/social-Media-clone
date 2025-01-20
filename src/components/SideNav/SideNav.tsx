@@ -6,7 +6,7 @@ const SideNav = () => {
             <h2 className='text-2xl font-bold text-center mb-4 p-2 text-slate-700'>Settings</h2>
             <ul>
                 <li className='text-slate-700 text-base underline'>
-                    <NavLink to="/settings">Reset password</NavLink>
+                    <NavLink to="">Reset password</NavLink>
                 </li>
                 <li className='text-slate-700 text-base underline'>
                     <NavLink to="ChangeProfilePic">Reset password</NavLink>
