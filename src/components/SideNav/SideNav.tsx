@@ -2,17 +2,20 @@ import { NavLink } from 'react-router-dom'
 
 const SideNav = () => {
     return <>
-        <div className=' flex flex-col justify-center col-span-3 shadow-xl rounded-2xl min-h-screen bg-slate-100'>
-            <h2 className='text-2xl font-bold text-center mb-4 p-2 text-slate-700'>Settings</h2>
-            <ul>
-                <li className='text-slate-700 text-base '>
-                    <NavLink to="ChangePassword">Reset password</NavLink>
-                </li>
-                <li className='text-slate-700 text-base '>
-                    <NavLink to="ChangeProfilePic">Reset password</NavLink>
-                </li>
-            </ul>
-
+        <div
+        className=' flex flex-col col-span-3 shadow-xl min-h-screen text-start bg-slate-500 p-16'
+        style={{borderRadius: '0 10px 10px 0'}}>
+            <h2 className='text-2xl font-bold mb-20 p-2 text-start text-white'>Settings</h2>
+            <div>
+                <ul>
+                    <li className='text-white text-base mb-6 '>
+                        <NavLink to="/settings/ChangePassword">- Reset password</NavLink>
+                    </li>
+                    <li className='text-white text-base '>
+                        <NavLink to="/settings/ChangeProfilePic">- Upload new Profile picture</NavLink>
+                    </li>
+                </ul>
+            </div>
         </div>
     </>
 }
