@@ -57,7 +57,7 @@ export const resetPassword = createAsyncThunk<ChangePasswordRes, resetPasswordPa
     const data: ChangePasswordRes = await Response.json();
     return data;
   }
-)
+);
 
 const userSlice = createSlice({
   name: "user",
