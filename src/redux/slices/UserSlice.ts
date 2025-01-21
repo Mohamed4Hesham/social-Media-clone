@@ -42,6 +42,7 @@ export const handleSignin = createAsyncThunk<LoginRes, LoginForm>(
 export const resetPassword = createAsyncThunk<ChangePasswordRes, resetPasswordPayload>(
   "user/resetPassword",
   async (resetPasswordValues: resetPasswordPayload) => {
+    const token = Cookies.get("SocialMediaToken");
     const Response = await fetch(
       'https://linked-posts.routemisr.com/users/change-password',
       {
@@ -49,8 +50,8 @@ export const resetPassword = createAsyncThunk<ChangePasswordRes, resetPasswordPa
         body: JSON.stringify(resetPasswordValues),
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${Cookies.get("SocialMediaToken")}`
-        }
+          ...(token && { token }),
+        } as HeadersInit
       }
     );
     const data: ChangePasswordRes = await Response.json();

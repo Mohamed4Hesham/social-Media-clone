@@ -18,6 +18,7 @@ import ChangeProfilePic from './pages/Settings/ChangeProfilePic/ChangeProfilePic
 import ChangePassword from './pages/Settings/ChangePassword/ChangePassword'
 import Settings from './pages/Settings/Settings'
 import Empty from './pages/Settings/Empty/Empty'
+import Theme from './pages/Settings/Theme/Theme'
 
 
 
@@ -32,6 +33,7 @@ function App() {
           { index: true, element: <ProtectedRoute><Empty /></ProtectedRoute> },
           { path: 'ChangePassword', element:<ProtectedRoute><ChangePassword /></ProtectedRoute> },
           { path: 'ChangeProfilePic', element:<ProtectedRoute><ChangeProfilePic /></ProtectedRoute> },
+          {path:'theme', element: <ProtectedRoute><Theme /></ProtectedRoute> },
           {path:'*', element: <ProtectedRoute><NotFound /></ProtectedRoute>}
         ] },
         { path: '/auth/register', element: <PublicRoutes> <Register /> </PublicRoutes> },

@@ -1,4 +1,5 @@
 export interface ChangePasswordRes{
-    message: string,
-    token: string
+    error?:string
+    message?: string,
+    token?: string
 }

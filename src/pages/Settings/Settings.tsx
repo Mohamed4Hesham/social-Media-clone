@@ -1,6 +1,6 @@
 import GridDynamicContainer from '@/components/Grid container/GridDynamicContainer'
-import SideNav from '@/components/SideNav/SideNav'
 import Layout from './Layout'
+import SideNav from './SideNav/SideNav'
 const Settings = () => {
     return <>
 
