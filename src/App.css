@@ -7,10 +7,5 @@
     -moz-border-radius: 10%;
     -ms-border-radius: 10%;
     -o-border-radius: 10%;
-    transition: all 1s ease ;
-    scale: 1.2;
-    -webkit-transition: all 1s ease ;
-    -moz-transition: all 1s ease ;
-    -ms-transition: all 1s ease ;
-    -o-transition: all 1s ease ;
+    
 } 
