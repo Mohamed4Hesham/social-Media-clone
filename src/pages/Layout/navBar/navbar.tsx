@@ -47,7 +47,7 @@ export default function Navbar() {
     }
     if(Token){
         return (
-            <nav className=" bg-gray-900  border-gray-200">
+            <nav className=" bg-gray-900  dark:bg-black  border-gray-200">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <div>
                     <Link

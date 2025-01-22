@@ -9,3 +9,7 @@
     -o-border-radius: 10%;
     
 } 
+
+.DarkMode {
+    background-color: black;
+}

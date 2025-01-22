@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 const SideNav = () => {
     return <>
         <div
-        className=' flex flex-col col-span-3 shadow-xl min-h-screen text-start bg-gray-900 p-16'
+        className=' flex flex-col col-span-3 shadow-xl min-h-screen text-start bg-gray-900 dark:bg-black p-16'
         >
             <h2 className='text-2xl font-bold mb-20 p-2 text-start text-white'>Settings</h2>
             <div>
