@@ -1,9 +1,8 @@
-import React from 'react'
 
 const ChangeProfilePic = () => {
   return (
-    <div>
-      5ew5ew
+    <div className='flex flex-col min-h-screen justify-center items-center font-bold '>
+      To be handled later
     </div>
   )
 }
