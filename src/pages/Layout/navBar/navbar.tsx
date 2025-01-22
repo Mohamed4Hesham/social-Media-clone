@@ -1,4 +1,4 @@
-import { CircleUserRound, House, LogOut, Unplug } from "lucide-react";
+import { CircleUserRound, Cog, House, LogOut, Unplug } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { DropdownMenuRadioGroupDemo } from "./dropDownMenu";
 import { useSelector } from "react-redux";
@@ -15,7 +15,12 @@ const navbarItems = [
         label: "Profile",
         href: "/profile",
         icon: CircleUserRound,
-    },    
+    }, 
+    {
+        label: "Settings",
+        href: "/settings",
+        icon: Cog,
+    }
 ]
 export default function Navbar() {
     const Token = useSelector((state: RootState) => state.user?.token);
@@ -65,7 +70,7 @@ export default function Navbar() {
                             className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                             aria-current="page"
                         >
-                        <item.icon className="w-6 h-6 items-center text-white" />
+                        <item.icon className={`w-6 h-6 items-center text-white`} />
                         </NavLink>
                         </li>
                     ))}

@@ -19,6 +19,7 @@ import ChangePassword from './pages/Settings/ChangePassword/ChangePassword'
 import Settings from './pages/Settings/Settings'
 import Empty from './pages/Settings/Empty/Empty'
 import Theme from './pages/Settings/Theme/Theme'
+import { ThemeProvider } from './pages/Settings/Theme/ThemeProvider/ThemeProvider'
 
 
 
@@ -66,7 +67,9 @@ function App() {
 
   return (
     <>
-    
+
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+
       <Provider store={Store}>
       
         <Toaster />
@@ -78,6 +81,7 @@ function App() {
           </RouterProvider>
         </HelmetProvider>
       </Provider>
+      </ThemeProvider>
     </>
   )
 }
