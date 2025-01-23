@@ -1,4 +1,5 @@
 import { ChangePasswordRes } from "@/interfaces/changePasswordRes";
+import { LoggedUserData } from "@/interfaces/getLoggedUserData";
 import { LoginForm } from "@/interfaces/LoginForm";
 import { LoginRes } from "@/interfaces/LoginResponse";
 import { RegisterForm, RegisterRes } from "@/interfaces/RegisterRes";
@@ -50,7 +51,7 @@ export const resetPassword = createAsyncThunk<ChangePasswordRes, resetPasswordPa
         body: JSON.stringify(resetPasswordValues),
         headers: {
           "Content-Type": "application/json",
-          ...(token && { token }),
+          token : token
         } as HeadersInit
       }
     );
@@ -58,7 +59,17 @@ export const resetPassword = createAsyncThunk<ChangePasswordRes, resetPasswordPa
     return data;
   }
 );
-
+export const getLoggedUserData = createAsyncThunk('user/getLoggedUserData',async()=>{
+    const Response = await fetch('https://linked-posts.routemisr.com/users/profile-data',{
+      signal: AbortSignal.timeout(5000),
+      method:'GET',
+      headers: {
+        token : Cookies.get("SocialMediaToken")
+      } as HeadersInit
+    });
+    const res :LoggedUserData = await Response.json();
+    return res;
+})
 const userSlice = createSlice({
   name: "user",
   initialState: <UserType>{

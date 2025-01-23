@@ -20,6 +20,7 @@ import Settings from './pages/Settings/Settings'
 import Empty from './pages/Settings/Empty/Empty'
 import Theme from './pages/Settings/Theme/Theme'
 import { ThemeProvider } from './pages/Settings/Theme/ThemeProvider/ThemeProvider'
+import Profile from './pages/Profile/Profile'
 
 
 
@@ -37,6 +38,7 @@ function App() {
           {path:'theme', element: <ProtectedRoute><Theme /></ProtectedRoute> },
           {path:'*', element: <ProtectedRoute><NotFound /></ProtectedRoute>}
         ] },
+        {path:'profile', element: <ProtectedRoute><Profile /></ProtectedRoute> },
         { path: '/auth/register', element: <PublicRoutes> <Register /> </PublicRoutes> },
         { path: '/auth/login', element:<PublicRoutes> <Login /> </PublicRoutes> },
         {path: '*', element: <ProtectedRoute><NotFound /></ProtectedRoute> }
