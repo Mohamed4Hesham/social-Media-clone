@@ -2,6 +2,7 @@ import { LoggedUserData } from '@/interfaces/getLoggedUserData';
 import { getLoggedUserData } from '@/redux/slices/UserSlice';
 import { AppDispatch } from '@/redux/Store';
 import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux'
 
 const Profile = () => {
@@ -31,8 +32,12 @@ const Profile = () => {
             
         };
         getData();
-    },[])
+    },[dispatch]);
     return <>
+    <Helmet>
+        <title>{userData.user.name.length > 2 ? `${userData.user.name}'s Profile` : "Profile"}</title>
+        <meta name="description" content={`Profile to our lovely user ${userData.user.name}`} />
+    </Helmet>
         <h1>{userData.user.name}</h1>
     </>
 }
