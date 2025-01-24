@@ -46,7 +46,7 @@ const Profile = () => {
         {userData.user.name.length <= 2 ? (
             <div className="animate-pulse">
             <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                <div className="w-48 h-48 bg-gray-300 rounded-full mr-4"></div>
                 <div>
                 <div className="h-4 bg-gray-300 rounded w-32 mb-2"></div>
                 <div className="h-4 bg-gray-300 rounded w-48"></div>
@@ -58,7 +58,7 @@ const Profile = () => {
             
             <div className="flex items-center mb-4">
                 <img
-                className="w-12 h-12 rounded-full mr-4"
+                className="w-48 h-48 rounded-full mr-4"
                 src={userData.user.photo}
                 alt={userData.user.name}
                 />
