@@ -1,1 +1,1 @@
-import '@testing-library/jest-dom'; // Provides additional Jest matchers
+import '@testing-library/jest-dom'; // Provides additional matchers like `toBeInTheDocument`
