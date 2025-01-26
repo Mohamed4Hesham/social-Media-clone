@@ -85,7 +85,7 @@ const Login = () => {
         }
     },
     }); 
-    
+
     return <>
         {/* helmet to provide metadata to the page  to get our app seo friendly*/}
         <Helmet>
