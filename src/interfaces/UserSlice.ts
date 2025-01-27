@@ -6,8 +6,7 @@ export interface UserType {
     dateOfBirth:string,
     gender:string,
     token ?:string,
-    posts?:string[],
-    comments?:string[],
+
     
 
 }

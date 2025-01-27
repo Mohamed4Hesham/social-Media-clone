@@ -81,8 +81,6 @@ const userSlice = createSlice({
     dateOfBirth: "",
     gender: "",
     token: Cookies.get("SocialMediaToken") ?? undefined,
-    posts: [],
-    comments: [],
   },
   reducers: {
     setToken: (state, action) => {
