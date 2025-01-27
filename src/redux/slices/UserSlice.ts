@@ -70,6 +70,7 @@ export const getLoggedUserData = createAsyncThunk('user/getLoggedUserData',async
     const res :LoggedUserData = await Response.json();
     return res;
 })
+
 const userSlice = createSlice({
   name: "user",
   initialState: <UserType>{
@@ -80,6 +81,8 @@ const userSlice = createSlice({
     dateOfBirth: "",
     gender: "",
     token: Cookies.get("SocialMediaToken") ?? undefined,
+    posts: [],
+    comments: [],
   },
   reducers: {
     setToken: (state, action) => {

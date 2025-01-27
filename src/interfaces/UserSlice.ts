@@ -5,6 +5,9 @@ export interface UserType {
     rePassword:string,
     dateOfBirth:string,
     gender:string,
-    token ?:string
+    token ?:string,
+    posts?:string[],
+    comments?:string[],
+    
 
 }

@@ -1,7 +1,7 @@
 import Card from '@/components/Card/Card';
 import GridDynamicContainer from '@/components/Grid container/GridDynamicContainer';
 import { LoggedUserData } from '@/interfaces/getLoggedUserData';
-import { getLoggedUserData } from '@/redux/slices/UserSlice';
+import { getLoggedUserData, getLoggedUserPosts } from '@/redux/slices/UserSlice';
 import { AppDispatch } from '@/redux/Store';
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async';
@@ -31,9 +31,17 @@ const Profile = () => {
             } catch (error) {
                 console.log(error)
             }
-            
-        };
+            };
+            const getPosts  = async ()=>{
+                try {
+                    const Data = await dispatch(getLoggedUserPosts()).unwrap();
+                    console.log(Data)
+                } catch (error) {
+                    console.log(error)
+                }
+                };
         getData();
+        getPosts();
     },[dispatch]);
     console.log(userData);
     return <>
