@@ -81,12 +81,11 @@ const userSlice = createSlice({
     dateOfBirth: "",
     gender: "",
     token: Cookies.get("SocialMediaToken") ?? undefined,
+    _id: "",
+    photo: "",
   },
   reducers: {
-    setToken: (state, action) => {
-      state.token = action.payload;
-      
-    },
+    
   },
   extraReducers: (builder) => {
     builder.addCase(handleSignup.fulfilled, (state, action) => {
@@ -110,6 +109,31 @@ const userSlice = createSlice({
       console.log(action);
     });
     builder.addCase(handleSignin.rejected, (state, action) => {
+      console.log(state);
+      console.log(action);
+    });
+    builder.addCase(resetPassword.fulfilled, (state, action) => {
+      console.log(state);
+      console.log(action);
+    });
+    builder.addCase(resetPassword.pending, (state, action) => {
+      console.log(state);
+      console.log(action);
+    });
+    builder.addCase(resetPassword.rejected, (state, action) => {
+      console.log(state);
+      console.log(action);
+    });
+    builder.addCase(getLoggedUserData.fulfilled, (state, action) => {
+      state.dateOfBirth = action.payload.user.dateOfBirth;
+      state.email = action.payload.user.email;
+      state.gender = action.payload.user.gender;
+      state.name = action.payload.user.name;
+      state._id = action.payload.user._id;
+      state.photo = action.payload.user.photo;
+      
+    });
+    builder.addCase(getLoggedUserData.pending, (state, action) => {
       console.log(state);
       console.log(action);
     });

@@ -6,6 +6,8 @@ export interface UserType {
     dateOfBirth:string,
     gender:string,
     token ?:string,
+    _id?:string,
+    photo:string
 
     
 
