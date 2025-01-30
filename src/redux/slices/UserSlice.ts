@@ -61,7 +61,6 @@ export const resetPassword = createAsyncThunk<ChangePasswordRes, resetPasswordPa
 );
 export const getLoggedUserData = createAsyncThunk('user/getLoggedUserData',async()=>{
     const Response = await fetch('https://linked-posts.routemisr.com/users/profile-data',{
-      signal: AbortSignal.timeout(5000),
       method:'GET',
       headers: {
         token : Cookies.get("SocialMediaToken")
