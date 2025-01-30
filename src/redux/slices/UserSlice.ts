@@ -85,7 +85,9 @@ const userSlice = createSlice({
     posts: [],
   },
   reducers: {
-    
+    setToken: (state, action) => {
+      state.token = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(handleSignup.fulfilled, (state, action) => {
