@@ -16,8 +16,7 @@ const Profile = () => {
     React.useEffect(() => {
         const getData  = async ()=>{
             try {
-                const Data = await dispatch(getLoggedUserData()).unwrap();
-                console.log(Data);
+                await dispatch(getLoggedUserData()).unwrap();
             } catch (error) {
                 console.log(error)
             }

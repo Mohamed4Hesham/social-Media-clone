@@ -83,6 +83,7 @@ const userSlice = createSlice({
     token: Cookies.get("SocialMediaToken") ?? undefined,
     _id: "",
     photo: "",
+    posts: [],
   },
   reducers: {
     
@@ -131,6 +132,7 @@ const userSlice = createSlice({
       state.name = action.payload.user.name;
       state._id = action.payload.user._id;
       state.photo = action.payload.user.photo;
+      console.log(action)
       
     });
     builder.addCase(getLoggedUserData.pending, (state, action) => {
