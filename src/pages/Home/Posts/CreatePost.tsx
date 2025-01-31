@@ -52,9 +52,10 @@ const formik = useFormik({
         try {
         const response: createPostResponse = await dispatch(AddPost(values)).unwrap();
         if (response.message === "success") {
-            toast.success("Your Thought has reached everyone!🤩", { duration: 2000 });
+            toast.success("Your Thought has reached everyone!🤩", { duration: 3000 });
             formik.resetForm();
             console.log(response, "Api response:");
+            
             // Here we are supposed to dispatch the loggedUserPosts function to update the newsfeed real time
 
         }
