@@ -1,16 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
-export const LoggedUserPosts = createAsyncThunk('postsSlice/getPosts',async()=>{
-    const Response = await fetch('Posts',{
-        method:'GET',
-        headers:{
-            token : Cookies.get('SocialMediaToken')
-        }as HeadersInit
-    })
-    const data = await Response.json()
+
+
+export const LoggedUserPosts = createAsyncThunk('postsSlice/getPosts', async (id?: string) => {
+    if (!id) {
+        throw new Error("User ID is required to fetch posts");
+    }
+
+    const response = await fetch(`https://linked-posts.routemisr.com/users/${id}/posts`, {
+        method: 'GET',
+        headers: {
+            token: Cookies.get('SocialMediaToken') || ''
+        } as HeadersInit
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch posts: ${response.statusText}`);
+    }
+
+    const data = await response.json();
     return data;
 });
+
 
 const PostSlice = createSlice({
     name:'postSlice',
@@ -23,7 +35,8 @@ const PostSlice = createSlice({
     },
     extraReducers:(builder)=>{
         builder.addCase(LoggedUserPosts.fulfilled,(state,action)=>{
-            state.posts = action.payload.posts
+            console.log(action);
+            console.log(state);
         })
     }
 })

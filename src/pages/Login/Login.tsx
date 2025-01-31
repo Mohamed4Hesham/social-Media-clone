@@ -26,7 +26,7 @@ const Inputs = [
     placeholder: "password",
     name: "password",
     },
-    ];
+];
 
 const Login = () => {
     
@@ -65,7 +65,7 @@ const Login = () => {
             console.log(response);
             if (response.message === "success") {
                 setIsLoading(false);
-                const res =  dispatch(userSliceActions.setToken(response.token));
+                dispatch(userSliceActions.setToken(response.token));
                 toast.success("Successfully logged in!", { duration: 2000 });
                 Cookies.set("SocialMediaToken",response.token as string, { expires: 7 }); 
                 navigate("/");

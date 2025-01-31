@@ -1,6 +1,7 @@
 import Card from '@/components/Card/Card';
 import GridDynamicContainer from '@/components/Grid container/GridDynamicContainer';
 import { UserType } from '@/interfaces/UserSlice';
+import { LoggedUserPosts } from '@/redux/slices/PostsSlice';
 import { getLoggedUserData } from '@/redux/slices/UserSlice';
 import { AppDispatch } from '@/redux/Store';
 import React from 'react'
@@ -12,17 +13,31 @@ interface Store {
 }
 const Profile = () => {
     const dispatch : AppDispatch = useDispatch();
-    const {name,photo,email} = useSelector((state:Store ) => state.user);
+    const {name,photo,email ,_id} = useSelector((state:Store ) => state.user);
     React.useEffect(() => {
         const getData  = async ()=>{
             try {
                 await dispatch(getLoggedUserData()).unwrap();
+                
             } catch (error) {
                 console.log(error)
             }
             };
+            const getPosts = async ()=>{
+                if(!_id){
+                    return null ;
+                }
+                try {
+                    await dispatch(LoggedUserPosts(_id)).unwrap();
+                    
+                } catch (error) {
+                    console.log(error)
+                }
+            }
         getData();
-    },[dispatch]);
+        getPosts();
+    },[dispatch,_id]);
+
     return <>
     <Helmet>
         <title>{name.length > 2 ? `${name}'s Profile` : "Profile"}</title>
@@ -58,7 +73,7 @@ const Profile = () => {
         )}
         </div>
 
-                        <Card />
+        <Card />
         </GridDynamicContainer>
     </>
 }
