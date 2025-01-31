@@ -2,18 +2,25 @@ import { createPostPayload, createPostResponse } from "@/interfaces/createPost";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
-export const LoggedUserPosts = createAsyncThunk('postsSlice/getPosts',async()=>{
-    const Response = await fetch('Posts',{
-        method:'GET',
-        headers:{
-            token : Cookies.get('SocialMediaToken')
-        }as HeadersInit
-    })
-    const data = await Response.json()
+export const LoggedUserPosts = createAsyncThunk('postsSlice/getPosts', async (id?: string) => {
+    if (!id) {
+        throw new Error("User ID is required to fetch posts");
+    }
+
+    const response = await fetch(`https://linked-posts.routemisr.com/users/${id}/posts`, {
+        method: 'GET',
+        headers: {
+            token: Cookies.get('SocialMediaToken') || ''
+        } as HeadersInit
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch posts: ${response.statusText}`);
+    }
+
+    const data = await response.json();
     return data;
 });
-
-
 
 export const AddPost = createAsyncThunk<createPostResponse, createPostPayload>('postsSlice/createPost', async (payload, { rejectWithValue }) => {
     try {
@@ -48,7 +55,23 @@ export const AddPost = createAsyncThunk<createPostResponse, createPostPayload>('
 const PostSlice = createSlice({
     name:'postSlice',
     initialState:{
-        posts:[],
+        currentPage:0,
+        limit:0,
+        numberOfPages:0,
+        total:0,
+        Posts:[
+            {
+                id:'',
+                body:'',
+                user: {
+                    id: '',
+                    name: '',
+                    photo: ''
+                },
+                createdAt: '',
+                comments: [],
+            }
+        ],
         body: "",
         image: null,
         },
@@ -57,7 +80,11 @@ const PostSlice = createSlice({
     },
     extraReducers:(builder)=>{
         builder.addCase(LoggedUserPosts.fulfilled,(state,action)=>{
-            state.posts = action.payload.posts
+            state.currentPage = action.payload.currentPage;
+            state.limit = action.payload.limit;
+            state.numberOfPages = action.payload.numberOfPages;
+            state.total = action.payload.total;
+            state.Posts = action.payload.posts
         })
         builder.addCase(AddPost.fulfilled,(state,action)=>{
             console.log(state);

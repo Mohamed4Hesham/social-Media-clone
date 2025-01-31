@@ -32,7 +32,7 @@ import React from "react";
         <DropdownMenuTrigger asChild>
             <TableOfContents className="rounded-md cursor-pointer text-white w-8 h-12" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom"  align="end" className="bg-gray-900  rounded-xl  ">
+        <DropdownMenuContent side="bottom"  align="end" className="bg-black rounded-xl  ">
                     <div className="flex flex-col p-2 gap-2 ">
                         {Items.map((item , index) => (
                             <Link onClick={handleItemClick} key={index} className=" text-white " to={item.href}>

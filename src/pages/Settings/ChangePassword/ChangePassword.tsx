@@ -65,8 +65,8 @@ const ChangePassword = () => {
         },
     })
     return (
-    <div className="container flex flex-col justify-center items-center mx-auto h-screen p-2">
-        <h2 className='text-2xl font-bold mb-20 p-2 text-center text-gray-800  '>Reset Password</h2>
+    <div className="container flex flex-col justify-center items-center mx-auto md:h-screen p-2">
+        <h2 className='text-2xl font-bold mb-10  md:mb-20 p-2 text-center text-gray-800  '>Reset Password</h2>
         <form className='w-full max-w-sm mx-auto bg-white p-8 rounded-xl shadow-2xl' onSubmit={formik.handleSubmit}>
                 {Inputs.map((input , index) => (
                 <Input key={index}

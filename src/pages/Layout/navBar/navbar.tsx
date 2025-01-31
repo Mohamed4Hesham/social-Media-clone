@@ -4,7 +4,6 @@ import { DropdownMenuRadioGroupDemo } from "./dropDownMenu";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/Store";
 import Cookies from "js-cookie";
-import { useEffect } from "react";
 
 const navbarItems = [
     {
@@ -25,9 +24,6 @@ const navbarItems = [
 ]
 export default function Navbar() {
     const Token = useSelector((state: RootState) => state.user?.token);
-    useEffect(() => {
-        
-    })
     if(!Token){
         return <>
             <nav className=" bg-gray-900 border-gray-200">
@@ -100,5 +96,4 @@ export default function Navbar() {
             </nav>
         );
     }
-
 }

@@ -12,7 +12,6 @@ import { Helmet } from "react-helmet-async";
 import { AppDispatch } from "@/redux/Store";
 import { LoginRes } from "@/interfaces/LoginResponse";
 import Cookies from 'js-cookie'
-
 const Inputs = [
     {
     label: "Email",
@@ -26,8 +25,7 @@ const Inputs = [
     placeholder: "password",
     name: "password",
     },
-    ];
-
+];
 const Login = () => {
     
     const [isLoading, setIsLoading] = React.useState(false);
@@ -65,7 +63,7 @@ const Login = () => {
             console.log(response);
             if (response.message === "success") {
                 setIsLoading(false);
-                const res =  dispatch(userSliceActions.setToken(response.token));
+                dispatch(userSliceActions.setToken(response.token));
                 toast.success("Successfully logged in!", { duration: 2000 });
                 Cookies.set("SocialMediaToken",response.token as string, { expires: 7 }); 
                 navigate("/");
@@ -134,5 +132,4 @@ const Login = () => {
     </div>
     </>
 }
-
 export default Login

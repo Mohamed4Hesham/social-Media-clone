@@ -26,7 +26,6 @@ import Profile from './pages/Profile/Profile'
 
 function App() {
   const {  isOffline } = useIsOnline();
-
   const Routes = createBrowserRouter([
     {
       path: '', element: <Layout />, children: [
@@ -45,9 +44,7 @@ function App() {
       ]
     }
   ])  
-
   const wasOffline = useRef(false); 
-
   useEffect(() => {
     toast.dismiss(); 
 
@@ -64,9 +61,6 @@ function App() {
       wasOffline.current = false; 
     }
   }, [isOffline]);
-
-
-
   return (
     <>
 
