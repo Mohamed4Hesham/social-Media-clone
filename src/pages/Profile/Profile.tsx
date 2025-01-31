@@ -51,7 +51,7 @@ const Profile = () => {
         {name.length <= 2 ? (
             <div className="animate-pulse">
             <div className="flex items-center mb-4">
-                <div className="w-48 h-48 bg-gray-300 rounded-full mr-4"></div>
+                <div className=" w-20 h-20 md:w-48 md:h-48 bg-gray-300 rounded-full mr-4"></div>
                 <div>
                 <div className="h-4 bg-gray-300 rounded w-32 mb-2"></div>
                 <div className="h-4 bg-gray-300 rounded w-48"></div>
@@ -63,12 +63,12 @@ const Profile = () => {
             
             <div className="flex items-center mb-4">
                 <img
-                className="w-48 h-48 rounded-full mr-4"
+                className="w-20 h-20 md:w-48 md:h-48 rounded-full mr-4"
                 src={photo}
                 alt={name}
                 />
                 <div>
-                <h3 className="text-lg font-semibold">{name}</h3>
+                <h3 className=" text-sm md:text-lg font-semibold">{name}</h3>
                 <p className="text-gray-600">{email}</p>
                 </div>
             </div>
