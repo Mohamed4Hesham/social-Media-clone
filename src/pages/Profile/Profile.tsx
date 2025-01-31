@@ -46,7 +46,7 @@ const Profile = () => {
         <title>{name.length > 2 ? `${name}'s Profile` : "Profile"}</title>
         <meta name="description" content={`Profile to our lovely user ${name}`} />
     </Helmet>
-        <GridDynamicContainer cols={12} className=' ' >
+        <GridDynamicContainer cols={12}  >
         <div className="p-2 col-span-10 col-start-2">
         {name.length <= 2 ? (
             <div className="animate-pulse">

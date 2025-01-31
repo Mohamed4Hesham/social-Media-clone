@@ -12,7 +12,6 @@ import { Helmet } from "react-helmet-async";
 import { AppDispatch } from "@/redux/Store";
 import { LoginRes } from "@/interfaces/LoginResponse";
 import Cookies from 'js-cookie'
-
 const Inputs = [
     {
     label: "Email",
@@ -27,7 +26,6 @@ const Inputs = [
     name: "password",
     },
 ];
-
 const Login = () => {
     
     const [isLoading, setIsLoading] = React.useState(false);
@@ -134,5 +132,4 @@ const Login = () => {
     </div>
     </>
 }
-
 export default Login
