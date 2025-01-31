@@ -4,7 +4,7 @@ import {Breadcrumb,BreadcrumbItem,BreadcrumbLink,BreadcrumbList,BreadcrumbSepara
 const NavMenu = () => {
     
     return<>
-    <div className="text-center justify-center md:hidden ">
+    <div className="text-center justify-center md:hidden mt-4  ">
 
     
     <Breadcrumb >
