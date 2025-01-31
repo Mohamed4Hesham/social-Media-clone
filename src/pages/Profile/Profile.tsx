@@ -1,5 +1,6 @@
 import Card from '@/components/Card/Card';
 import GridDynamicContainer from '@/components/Grid container/GridDynamicContainer';
+import { GetUserPosts } from '@/interfaces/getUserPosts';
 import { UserType } from '@/interfaces/UserSlice';
 import { LoggedUserPosts } from '@/redux/slices/PostsSlice';
 import { getLoggedUserData } from '@/redux/slices/UserSlice';
@@ -10,10 +11,12 @@ import { useDispatch, useSelector } from 'react-redux'
 
 interface Store {
     user : UserType
+    post : GetUserPosts
 }
 const Profile = () => {
     const dispatch : AppDispatch = useDispatch();
     const {name,photo,email ,_id} = useSelector((state:Store ) => state.user);
+    const {Posts} = useSelector((state:Store ) => state.post);
     React.useEffect(() => {
         const getData  = async ()=>{
             try {
@@ -44,7 +47,7 @@ const Profile = () => {
         <meta name="description" content={`Profile to our lovely user ${name}`} />
     </Helmet>
         <GridDynamicContainer cols={12} className=' ' >
-                <div className="p-2 col-span-10 col-start-2">
+        <div className="p-2 col-span-10 col-start-2">
         {name.length <= 2 ? (
             <div className="animate-pulse">
             <div className="flex items-center mb-4">
@@ -72,7 +75,7 @@ const Profile = () => {
             </>
         )}
         </div>
-
+        <span>{Posts.body}</span>
         <Card />
         </GridDynamicContainer>
     </>

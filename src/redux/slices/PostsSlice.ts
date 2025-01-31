@@ -27,7 +27,23 @@ export const LoggedUserPosts = createAsyncThunk('postsSlice/getPosts', async (id
 const PostSlice = createSlice({
     name:'postSlice',
     initialState:{
-        posts:[],
+        currentPage:0,
+        limit:0,
+        numberOfPages:0,
+        total:0,
+        Posts:[
+            {
+                id:'',
+                body:'',
+                user: {
+                    id: '',
+                    name: '',
+                    photo: ''
+                },
+                createdAt: '',
+                comments: [],
+            }
+        ],
 
     },
     reducers:{
@@ -35,8 +51,11 @@ const PostSlice = createSlice({
     },
     extraReducers:(builder)=>{
         builder.addCase(LoggedUserPosts.fulfilled,(state,action)=>{
-            console.log(action);
-            console.log(state);
+            state.currentPage = action.payload.currentPage;
+            state.limit = action.payload.limit;
+            state.numberOfPages = action.payload.numberOfPages;
+            state.total = action.payload.total;
+            state.Posts = action.payload.posts
         })
     }
 })
