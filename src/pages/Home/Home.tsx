@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import CreatePost from './Posts/CreatePost';
 
 const Home = () => {
 
@@ -9,8 +10,8 @@ const Home = () => {
         <title>Home</title>
         <meta name="description" content="News feed to your account on our social media platform, have fun mi amigo" />
       </Helmet>
-      <div>Hola</div>
-      
+      <CreatePost/>
+
     </>
   );
 };
