@@ -1,5 +1,4 @@
 import { useFormik } from 'formik'
-import React from 'react'
 import * as yup from 'yup'
 import { AppDispatch } from '@/redux/Store';
 import { useDispatch } from 'react-redux';
@@ -15,7 +14,7 @@ function CreatePost() {
     const validationSchema = yup.object({
         body: yup
         .string()
-        .min(1)
+        .min(1,'You can not post void')
         .max(301,"The body has exceeded the character limit" ),
         image: yup
         .mixed()

@@ -2,7 +2,7 @@ import { createPostPayload, createPostResponse } from "@/interfaces/createPost";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
-export const LoggedUserPosts = createAsyncThunk('postsSlice/getPosts', async (id?: string) => {
+export const LoggedUserPosts = createAsyncThunk('postsSlice/getPosts', async (id: string) => {
     if (!id) {
         throw new Error("User ID is required to fetch posts");
     }
@@ -19,6 +19,7 @@ export const LoggedUserPosts = createAsyncThunk('postsSlice/getPosts', async (id
     }
 
     const data = await response.json();
+    console.log(data)
     return data;
 });
 

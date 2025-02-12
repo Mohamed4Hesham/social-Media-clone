@@ -69,6 +69,18 @@ export const getLoggedUserData = createAsyncThunk('user/getLoggedUserData',async
     const res :LoggedUserData = await Response.json();
     return res;
 })
+export const ChangeProfilePic = createAsyncThunk('user/ProfilePic',async()=>{
+  const Response = await fetch('https://linked-posts.routemisr.com/users/upload-photo',{
+    method:'PUT',
+    headers:{
+      token : Cookies.get("SocialMediaToken")
+    } as HeadersInit
+    
+  });
+  const data = await Response.json();
+  return data;
+
+})
 
 const userSlice = createSlice({
   name: "user",
