@@ -78,7 +78,7 @@ const ChangePassword = () => {
                 onBlur={formik.handleBlur}  />
                 ))}
             <button
-            className="w-full bg-indigo-500 text-white text-sm font-bold py-2 px-4 rounded-xl hover:bg-indigo-600 transition duration-300"
+            className="w-full bg-black text-white text-sm font-bold py-2 px-4 rounded-xl  transition duration-300"
             type="submit"
             >Change Password</button>        
         </form>

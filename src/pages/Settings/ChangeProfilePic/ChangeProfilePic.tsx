@@ -55,13 +55,12 @@ const ProfilePic = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen items-center">
-      <h2 className="text-lg font-semibold mt-10">Change Profile Picture</h2>
-      <div className="flex flex-col items-center gap-4 p-10 border rounded-xl mt-5">
+    <div className="container flex flex-col justify-center items-center mx-auto md:h-screen p-2">
+      <h2 className='text-2xl font-bold mb-10  md:mb-20 p-2 text-center text-gray-800  '>Change Profile Picture</h2>
         {selectedFile && (
           <img src={selectedFile} alt="Profile Preview" className="w-24 h-24 rounded-full object-cover border" />
         )}
-        <form className="flex flex-col items-center gap-3 w-full" onSubmit={formik.handleSubmit}>
+        <form className='w-full flex flex-col gap-2 max-w-sm mx-auto bg-white p-8 rounded-xl shadow-2xl' onSubmit={formik.handleSubmit}>
           <input
             type="file"
             name="photo"
@@ -78,7 +77,6 @@ const ProfilePic = () => {
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Upload"}
           </button>
         </form>
-      </div>
     </div>
   );
 };
