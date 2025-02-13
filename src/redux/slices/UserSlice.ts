@@ -165,10 +165,7 @@ const userSlice = createSlice({
       console.log(state);
       console.log(action);
     });
-    builder.addCase(ChangeProfilePic.fulfilled,(state,action)=>{
-      state.photo = action.payload
-      console.log(action);
-    })
+    
   },
 });
 
