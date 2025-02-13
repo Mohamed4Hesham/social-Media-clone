@@ -4,10 +4,10 @@ import { LoginForm } from "@/interfaces/LoginForm";
 import { LoginRes } from "@/interfaces/LoginResponse";
 import { RegisterForm, RegisterRes } from "@/interfaces/RegisterRes";
 import { resetPasswordPayload } from "@/interfaces/resetPassword";
+import { Return } from "@/interfaces/Return";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie'
-const token = Cookies.get("SocialMediaToken");
 export const handleSignup = createAsyncThunk< RegisterRes , RegisterForm>(
   "user/handleSignup",
   async (FormValues: RegisterForm) => {
@@ -57,8 +57,8 @@ export const resetPassword = createAsyncThunk<ChangePasswordRes, resetPasswordPa
     );
     const data: ChangePasswordRes = await Response.json();
     return data;
-  }
-);
+  
+});
 export const getLoggedUserData = createAsyncThunk('user/getLoggedUserData',async()=>{
     const Response = await fetch('https://linked-posts.routemisr.com/users/profile-data',{
       method:'GET',
@@ -69,6 +69,30 @@ export const getLoggedUserData = createAsyncThunk('user/getLoggedUserData',async
     const res :LoggedUserData = await Response.json();
     return res;
 })
+export const ChangeProfilePic = createAsyncThunk<Return,FormData>(
+  "user/ChangeProfilePic",
+  async (formData: FormData, { rejectWithValue }) => {
+    try {
+      const response = await fetch("https://linked-posts.routemisr.com/users/upload-photo", {
+        method: "PUT",
+        headers: {
+          token: Cookies.get("SocialMediaToken") ,
+        } as HeadersInit,
+        body: formData, 
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload profile picture");
+      }
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error:any) {
+      return rejectWithValue({message:error.message || 'Unexpected Error Occured'});
+    }
+  }
+);
+
 
 
 const userSlice = createSlice({
@@ -141,6 +165,10 @@ const userSlice = createSlice({
       console.log(state);
       console.log(action);
     });
+    builder.addCase(ChangeProfilePic.fulfilled,(state,action)=>{
+      state.photo = action.payload
+      console.log(action);
+    })
   },
 });
 
