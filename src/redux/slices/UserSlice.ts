@@ -7,7 +7,7 @@ import { resetPasswordPayload } from "@/interfaces/resetPassword";
 import { UserType } from "@/interfaces/UserSlice";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie'
-
+const token = Cookies.get("SocialMediaToken");
 export const handleSignup = createAsyncThunk< RegisterRes , RegisterForm>(
   "user/handleSignup",
   async (FormValues: RegisterForm) => {
@@ -69,18 +69,7 @@ export const getLoggedUserData = createAsyncThunk('user/getLoggedUserData',async
     const res :LoggedUserData = await Response.json();
     return res;
 })
-export const ChangeProfilePic = createAsyncThunk('user/ProfilePic',async()=>{
-  const Response = await fetch('https://linked-posts.routemisr.com/users/upload-photo',{
-    method:'PUT',
-    headers:{
-      token : Cookies.get("SocialMediaToken")
-    } as HeadersInit
-    
-  });
-  const data = await Response.json();
-  return data;
 
-})
 
 const userSlice = createSlice({
   name: "user",
